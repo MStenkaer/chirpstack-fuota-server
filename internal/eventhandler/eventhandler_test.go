@@ -12,12 +12,12 @@ import (
 	"github.com/golang/protobuf/ptypes"
 	"github.com/stretchr/testify/require"
 
-	"github.com/brocaar/chirpstack-api/go/v3/as/external/api"
 	"github.com/brocaar/chirpstack-api/go/v3/as/integration"
 	"github.com/brocaar/chirpstack-api/go/v3/gw"
 	"github.com/brocaar/chirpstack-fuota-server/internal/client/as"
 	"github.com/brocaar/chirpstack-fuota-server/internal/test"
 	"github.com/brocaar/lorawan/applayer/clocksync"
+	"github.com/chirpstack/chirpstack-rest-api/api"
 )
 
 func TestEventHandler(t *testing.T) {

@@ -7,11 +7,11 @@ import (
 	"github.com/golang/protobuf/ptypes"
 	log "github.com/sirupsen/logrus"
 
-	"github.com/brocaar/chirpstack-api/go/v3/as/external/api"
-	fapi "github.com/brocaar/chirpstack-api/go/v3/fuota"
 	"github.com/brocaar/chirpstack-fuota-server/internal/fuota"
+	fapi "github.com/brocaar/chirpstack-fuota-server/internal/fuota/pb"
 	"github.com/brocaar/chirpstack-fuota-server/internal/storage"
 	"github.com/brocaar/lorawan"
+	"github.com/chirpstack/chirpstack-rest-api/api"
 )
 
 // FUOTAServerAPI implements the FUOTA server API.
@@ -25,7 +25,7 @@ func NewFUOTAServerAPI() *FUOTAServerAPI {
 // CreateDeployment creates the given FUOTA deployment.
 func (a *FUOTAServerAPI) CreateDeployment(ctx context.Context, req *fapi.CreateDeploymentRequest) (*fapi.CreateDeploymentResponse, error) {
 	opts := fuota.DeploymentOptions{
-		ApplicationID:                     req.GetDeployment().ApplicationId,
+		ApplicationID:                     "006bf80b-0a08-4d8e-ad83-70275eb7a465",
 		Devices:                           make(map[lorawan.EUI64]fuota.DeviceOptions),
 		MulticastDR:                       uint8(req.GetDeployment().MulticastDr),
 		MulticastFrequency:                req.GetDeployment().MulticastFrequency,

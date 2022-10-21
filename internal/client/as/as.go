@@ -9,8 +9,8 @@ import (
 	log "github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
 
-	"github.com/brocaar/chirpstack-api/go/v3/as/external/api"
 	"github.com/brocaar/chirpstack-fuota-server/internal/config"
+	"github.com/chirpstack/chirpstack-rest-api/api"
 )
 
 var (
@@ -18,7 +18,7 @@ var (
 
 	applicationClient    api.ApplicationServiceClient
 	multicastGroupClient api.MulticastGroupServiceClient
-	deviceQueueClient    api.DeviceQueueServiceClient
+	deviceQueueClient    api.DeviceServiceClient
 )
 
 type APIToken string
@@ -66,7 +66,7 @@ func Setup(conf *config.Config) error {
 
 	applicationClient = api.NewApplicationServiceClient(clientConn)
 	multicastGroupClient = api.NewMulticastGroupServiceClient(clientConn)
-	deviceQueueClient = api.NewDeviceQueueServiceClient(clientConn)
+	deviceQueueClient = api.NewDeviceServiceClient(clientConn)
 
 	return nil
 }
@@ -79,10 +79,10 @@ func MulticastGroupClient() api.MulticastGroupServiceClient {
 	return multicastGroupClient
 }
 
-func DeviceQueueClient() api.DeviceQueueServiceClient {
+func DeviceQueueClient() api.DeviceServiceClient {
 	return deviceQueueClient
 }
 
-func SetDeviceQueueClient(c api.DeviceQueueServiceClient) {
+func SetDeviceQueueClient(c api.DeviceServiceClient) {
 	deviceQueueClient = c
 }
